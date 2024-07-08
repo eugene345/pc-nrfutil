@@ -210,7 +210,7 @@ class DFUAdapter(BLEDriverObserver, BLEAdapterObserver):
             self.adapter.enable_indication(self.conn_handle, DFUAdapter.SERVICE_CHANGED_UUID)
 
         # Enter DFU mode
-        self.adapter.write_req(self.conn_handle, buttonless_uuid, [0x01])
+        self.adapter.write_cmd(self.conn_handle, buttonless_uuid, [0x01])
 #        response = self.indication_q.get(timeout=DfuTransportBle.DEFAULT_TIMEOUT)
 #        if response[DFUAdapter.ERROR_CODE_POS] != 0x01:
 #            raise Exception("Error - Unexpected response")
