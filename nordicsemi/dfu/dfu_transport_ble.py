@@ -211,9 +211,9 @@ class DFUAdapter(BLEDriverObserver, BLEAdapterObserver):
 
         # Enter DFU mode
         self.adapter.write_cmd(self.conn_handle, buttonless_uuid, [0x01])
-#        response = self.indication_q.get(timeout=DfuTransportBle.DEFAULT_TIMEOUT)
-#        if response[DFUAdapter.ERROR_CODE_POS] != 0x01:
-#            raise Exception("Error - Unexpected response")
+        response = self.indication_q.get(timeout=DfuTransportBle.DEFAULT_TIMEOUT)
+        if response[DFUAdapter.ERROR_CODE_POS] != 0x01:
+            raise Exception("Error - Unexpected response")
 
         # Wait for buttonless peer to disconnect
         self.evt_sync.wait('disconnected')
